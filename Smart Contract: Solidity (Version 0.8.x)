@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract RandomWisdomDistributor {
+    
+    string[] private wisdoms = [
+        "The early bird catches the worm.",
+        "A journey of a thousand miles begins with a single step.",
+        "Fortune favors the bold.",
+        "Knowledge is power.",
+        "Patience is a virtue.",
+        "Every cloud has a silver lining."
+    ];
+
+    // A simple function to get a random wisdom from the list
+    function getWisdom() public view returns (string memory) {
+        uint256 randomIndex = getRandomNumber() % wisdoms.length;
+        return wisdoms[randomIndex];
+    }
+
+    // Generates a pseudo-random number using block information
+    function getRandomNumber() internal view returns (uint256) {
+        return uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, msg.sender)));
+    }
+}
