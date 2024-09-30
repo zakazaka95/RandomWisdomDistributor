@@ -1,6 +1,8 @@
 # RandomWisdomDistributor
 Project: Random Wisdom Distributor Concept: Users can call a function on the smart contract to receive a random piece of wisdom from a predefined list. It’s a playful project that’s simple yet interactive, showcasing smart contract deployment and random number generation on the Scroll network.
+
 1.Smart Contract: Solidity (Version 0.8.x)
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -26,7 +28,9 @@ contract RandomWisdomDistributor {
         return uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, msg.sender)));
     }
 }
+
 2. Setup on Hardhat
+   
 Install Dependencies:
 npm init -y
 npm install --save-dev hardhat ethers @alchemy/sdk
@@ -42,7 +46,9 @@ module.exports = {
     }
   }
 };
+
 3. Deploy the Contract: Write a deployment script in scripts/deploy.js:
+   
 async function main() {
   const RandomWisdomDistributor = await ethers.getContractFactory("RandomWisdomDistributor");
   const wisdomContract = await RandomWisdomDistributor.deploy();
@@ -54,6 +60,7 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
+
 4. Run the Deployment:
 npx hardhat run scripts/deploy.js --network scroll
 
